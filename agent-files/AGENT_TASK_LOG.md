@@ -1,1 +1,3 @@
-логи работы агента
+# Agent Task Log
+
+No entries yet.
