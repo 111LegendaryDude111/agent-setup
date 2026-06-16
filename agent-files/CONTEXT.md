@@ -36,6 +36,7 @@
 - Не добавлять Docker/microservices без явной необходимости.
 - Предпочитать `uv`, `pyproject.toml`, `pytest`, lightweight MVP stack.
 - Все рискованные изменения — маленькими PR/changesets.
+- Для задач с кодом обязательны `$karpathy-guidelines`, `$caveman` и `$ponytail`.
 
 ## Open Questions
 

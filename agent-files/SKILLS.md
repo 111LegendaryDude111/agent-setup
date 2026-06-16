@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | [`$karpathy-guidelines`](https://github.com/forrestchang/andrej-karpathy-skills/tree/main/skills/karpathy-guidelines) | required | Дисциплина реализации: простые изменения, минимум лишнего кода, явные допущения, проверяемый результат. |
 | `$caveman` | required | Короткая коммуникация, меньше шума, защита от over-engineering. |
+| [`$ponytail`](https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail) | required | Минимальная реализация: YAGNI, stdlib/native-first, меньше зависимостей и boilerplate. |
 | `$handoff` | recommended | Компактная передача состояния следующему агенту. |
 
 ## Разработка и качество кода
@@ -46,18 +47,19 @@
 
 1. `$karpathy-guidelines`
 2. `$caveman`
-3. `$handoff`
-4. `$tdd`
-5. `$grill-me`
-6. `$grill-with-docs`
-7. `$improve-codebase-architecture`
-8. `$zoom-out`
-9. `$to-issues`
-10. `$skill-installer`
-11. `$skill-creator`
-12. `$plugin-creator`
-13. `$openai-docs`
-14. `$imagegen`
+3. `$ponytail`
+4. `$handoff`
+5. `$tdd`
+6. `$grill-me`
+7. `$grill-with-docs`
+8. `$improve-codebase-architecture`
+9. `$zoom-out`
+10. `$to-issues`
+11. `$skill-installer`
+12. `$skill-creator`
+13. `$plugin-creator`
+14. `$openai-docs`
+15. `$imagegen`
 
 ## Минимум для этого репозитория
 
@@ -65,8 +67,9 @@
 
 1. `$karpathy-guidelines`
 2. `$caveman`
-3. `$handoff`
-4. `$tdd`
+3. `$ponytail`
+4. `$handoff`
+5. `$tdd`
 
 Для работы с архитектурой и документацией добавить:
 
