@@ -16,6 +16,7 @@
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
 | 2026-06-14 | Example decision | Why | What changed |
+| 2026-06-16 | OKF knowledge base rule added to agent contract | Важные знания проекта должны жить в agent-readable markdown, а не только в handoff или комментариях | `AGENTS.md` теперь описывает, когда читать/писать `knowledge/`, а `agent-files/OKF_TEMPLATE.md` задает шаблон concept-файла |
 
 ## Implemented Features
 
@@ -37,6 +38,7 @@
 - Предпочитать `uv`, `pyproject.toml`, `pytest`, lightweight MVP stack.
 - Все рискованные изменения — маленькими PR/changesets.
 - Для задач с кодом обязательны `$karpathy-guidelines`, `$caveman` и `$ponytail`.
+- Если проект использует `knowledge/`, агент должен вести его в стиле OKF и обновлять только при появлении переиспользуемого знания.
 
 ## Open Questions
 

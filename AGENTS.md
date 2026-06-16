@@ -72,6 +72,68 @@
 
 Domain subagent rules дополняют этот контракт и не должны его отменять. Если правила конфликтуют, агент останавливается, описывает конфликт пользователю и спрашивает, какое правило применять.
 
+## OKF Knowledge Base
+
+Если в проекте есть каталог `knowledge/` или задача явно просит создать project knowledge base, агент ведет его в стиле Open Knowledge Format: markdown-файлы с YAML frontmatter, читаемые людьми и агентами.
+
+Шаблон concept-файла находится в `agent-files/OKF_TEMPLATE.md`.
+
+### Когда читать OKF
+
+Перед изменением кода, SQL, конфигов или документации, связанных с data, ML, anti-fraud, analytics, metrics, pipelines, API, runbooks или production behavior, агент сначала просматривает релевантные файлы в `knowledge/`, если каталог существует.
+
+Если релевантный OKF-файл отсутствует, это не blocker. Агент создает его только когда задача добавляет или меняет переиспользуемое знание.
+
+### Когда создавать или обновлять OKF
+
+Агент создает или обновляет OKF-файлы, когда задача вводит или меняет:
+
+* таблицу, dataset, источник данных или контракт данных;
+* метрику, ML feature, fraud rule, модель или model behavior;
+* pipeline, job, API, интеграцию или runbook;
+* SQL semantics, join logic, threshold, business rule или operational decision;
+* production incident lesson, known pitfall или repeated explanation, важные для будущих задач.
+
+Не нужно менять OKF для тривиальных implementation details, форматирования, локальных refactor без изменения поведения или одноразовых заметок.
+
+### Как писать OKF
+
+Каждый concept-файл должен быть отдельным `.md` файлом внутри `knowledge/`. Путь файла является identity concept-а.
+
+Файл должен начинаться с YAML frontmatter. Для этого репозитория обязательны поля:
+
+```yaml
+---
+type: "<Concept Type>"
+title: "<Human-readable title>"
+description: "<One sentence summary>"
+owner: "<team/person or TODO>"
+tags: ["tag1", "tag2"]
+status: "draft"
+timestamp: "YYYY-MM-DDTHH:MM:SSZ"
+---
+```
+
+OKF v0.1 требует только `type`, но этот репозиторий требует расширенный набор выше, чтобы знания были пригодны для review и поиска.
+
+В body использовать структурированный markdown: `## Purpose`, `## Source of Truth`, `## Definition`, `## Inputs / Schema`, `## Business Rules`, `## Usage Examples`, `## Common Mistakes`, `## Related Knowledge`, `## Validation Checks`, `## Citations`, `## Change Log`. Нерелевантные секции можно удалить.
+
+### Grounding и review
+
+Агент не должен выдумывать факты для OKF.
+
+* Если информация выведена из кода, SQL, config, ticket, dashboard или внешней документации, нужно дать ссылку или путь к источнику.
+* Если информация является выводом агента, нужно явно написать `> Assumption: ...`.
+* Если информация неизвестна, нужно явно написать `> TODO: confirm with owner`.
+* Для business-critical knowledge, fraud thresholds, billing logic, security rules, model thresholds и production runbooks ставить `status: "draft"` и добавлять `TODO: requires human review`.
+* Не менять `status` на `active` без явного human approval.
+
+### Логи и handoff
+
+Каждое изменение OKF должно получить запись в `## Change Log` соответствующего OKF-файла и подробную запись в `agent-files/AGENT_TASK_LOG.md`, если task log существует.
+
+`agent-files/AGENT_HANDOFF.md` не должен превращаться в отчет по OKF. Если задача завершена, handoff очищается до `status: clear`. Если осталась незавершенная проверка или нужен human review, handoff хранит только короткий blocker, следующий шаг и ссылки на 1-3 релевантных OKF-файла.
+
 ## Handoff Protocol
 
 `agent-files/AGENT_HANDOFF.md` — не история проекта, не отчет о работе и не журнал команд.
